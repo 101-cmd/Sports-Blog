@@ -1,0 +1,702 @@
+/* ==========================================================================
+   THE FOOTBALL DESK — Stylesheet
+   A clean, editorial football-news layout. No JS, no frameworks.
+   ========================================================================== */
+
+/* ---------- Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ---------- Design tokens ---------- */
+:root {
+  /* colors */
+  --navy: #0d1420;
+  --navy-light: #1a2436;
+  --bg: #eeece5;
+  --paper: #ffffff;
+  --ink: #16181c;
+  --ink-muted: #5b6270;
+  --ink-faint: #8a8f99;
+  --red: #a3111c;
+  --red-bright: #c8151f;
+  --border: #d9d6cb;
+  --border-strong: #c3bfb0;
+
+  /* type */
+  --font-display: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-utility: 'Inter', -apple-system, sans-serif;
+
+  /* layout */
+  --max-width: 1200px;
+  --gap: 1.75rem;
+}
+
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ---------- Focus states (accessibility) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Edition bar — small masthead strip above the main header
+   ========================================================================== */
+.edition-bar {
+  background: var(--navy);
+  color: #b7bdc9;
+  font-family: var(--font-utility);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+}
+
+.edition-bar .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.edition-bar__tag {
+  text-transform: uppercase;
+  color: #7d859a;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.site-header {
+  background: var(--navy);
+  border-bottom: 3px solid var(--red);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.65rem;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--red-bright);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  font-family: var(--font-utility);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #cfd3dc;
+  padding: 0.25rem 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  color: #ffffff;
+  border-color: var(--red-bright);
+}
+
+.main-nav a.is-active {
+  color: #ffffff;
+  border-color: var(--red-bright);
+}
+
+.search-icon {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #3a4457;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfd3dc;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Breaking news bar
+   ========================================================================== */
+.breaking-bar {
+  background: #f4ebe9;
+  border-bottom: 1px solid var(--border);
+}
+
+.breaking-bar .wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+.breaking-label {
+  font-family: var(--font-utility);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--red);
+  padding: 0.2rem 0.5rem;
+  flex-shrink: 0;
+}
+
+.breaking-bar p {
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   Section headings (shared)
+   ========================================================================== */
+.section {
+  padding: 2.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  border-left: 4px solid var(--red);
+  padding-left: 0.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.category-label {
+  font-family: var(--font-utility);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.meta {
+  font-family: var(--font-utility);
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+/* ==========================================================================
+   Hero story
+   ========================================================================== */
+.hero {
+  padding-top: 2.5rem;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: var(--gap);
+}
+
+.hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.hero-text {
+  padding-top: 0.25rem;
+}
+
+.hero-text .category-label {
+  display: inline-block;
+  margin-bottom: 0.6rem;
+}
+
+.hero-text h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  line-height: 1.15;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+
+.hero-text p.summary {
+  font-size: 1.02rem;
+  color: var(--ink-muted);
+  margin-bottom: 1rem;
+}
+
+.hero-text .meta {
+  margin-bottom: 1rem;
+}
+
+.read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-utility);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--red);
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 0.15rem;
+}
+
+.read-link:hover {
+  color: var(--red-bright);
+  border-color: var(--red-bright);
+}
+
+.demo-flag {
+  display: inline-block;
+  margin-top: 1.25rem;
+  font-family: var(--font-utility);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--border-strong);
+  padding: 0.25rem 0.5rem;
+}
+
+/* ==========================================================================
+   Article grid (Latest Football News)
+   ========================================================================== */
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap) 1.4rem;
+}
+
+.article-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--border);
+  margin-bottom: 0.8rem;
+}
+
+.article-card .category-label {
+  margin-bottom: 0.35rem;
+}
+
+.article-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.article-card p.desc {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   Transfer Centre
+   ========================================================================== */
+.transfer-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.transfer-item {
+  display: grid;
+  grid-template-columns: 1.4fr 2.4fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.transfer-player {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.transfer-route {
+  font-family: var(--font-utility);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-top: 0.15rem;
+}
+
+.transfer-route strong {
+  color: var(--ink-muted);
+  font-weight: 600;
+}
+
+.transfer-update {
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+}
+
+.status {
+  font-family: var(--font-utility);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.6rem;
+  white-space: nowrap;
+  justify-self: end;
+  border: 1px solid transparent;
+}
+
+.status--confirmed {
+  color: #1c6b3a;
+  background: #e6f2ea;
+  border-color: #bfe0cb;
+}
+
+.status--negotiations {
+  color: #93650b;
+  background: #f7edd9;
+  border-color: #e9d5a6;
+}
+
+.status--rumour {
+  color: var(--ink-muted);
+  background: #ece9e1;
+  border-color: var(--border-strong);
+}
+
+/* ==========================================================================
+   Other Sports
+   ========================================================================== */
+.other-sports-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.mini-card {
+  border: 1px solid var(--border);
+  background: var(--paper);
+}
+
+.mini-card img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.mini-card-body {
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+.mini-card .category-label {
+  margin-bottom: 0.3rem;
+}
+
+.mini-card h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+
+.mini-card p {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+/* ==========================================================================
+   Premier League Table
+   ========================================================================== */
+.standings-wrap {
+  overflow-x: auto;
+}
+
+.standings {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-utility);
+  font-size: 0.88rem;
+}
+
+.standings caption {
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.standings th,
+.standings td {
+  padding: 0.65rem 0.7rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.standings th {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+  border-bottom: 2px solid var(--navy);
+}
+
+.standings td.team-cell,
+.standings th.team-col {
+  text-align: left;
+}
+
+.standings td.pos {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.standings td.team-cell {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.standings td.pts {
+  font-weight: 700;
+  color: var(--red);
+}
+
+.standings tr.qualify td.pos {
+  color: var(--red);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--navy);
+  color: #b7bdc9;
+  margin-top: 1rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: var(--gap);
+  padding: 2.75rem 0 1.75rem;
+}
+
+.footer-brand .logo {
+  margin-bottom: 0.75rem;
+}
+
+.footer-brand p {
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  color: #8b93a4;
+  max-width: 34ch;
+}
+
+.footer-heading {
+  font-family: var(--font-utility);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #7d859a;
+  margin-bottom: 0.9rem;
+}
+
+.footer-links li {
+  margin-bottom: 0.55rem;
+}
+
+.footer-links a {
+  font-family: var(--font-utility);
+  font-size: 0.85rem;
+  color: #cfd3dc;
+}
+
+.footer-links a:hover {
+  color: #ffffff;
+}
+
+.footer-bottom {
+  border-top: 1px solid #26314a;
+  padding: 1.1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--font-utility);
+  font-size: 0.75rem;
+  color: #7d859a;
+}
+
+/* ==========================================================================
+   Responsive — Tablet
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .article-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .other-sports-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.3fr 1fr;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .main-nav {
+    gap: 1rem;
+  }
+}
+
+/* ==========================================================================
+   Responsive — Mobile
+   ========================================================================== */
+@media (max-width: 620px) {
+  .site-header .wrap {
+    flex-wrap: wrap;
+  }
+
+  .main-nav {
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #26314a;
+    margin-top: 0.75rem;
+  }
+
+  .main-nav a {
+    font-size: 0.76rem;
+  }
+
+  .edition-bar .wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .article-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .other-sports-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .transfer-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .status {
+    justify-self: start;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .standings {
+    font-size: 0.78rem;
+  }
+
+  .standings th,
+  .standings td {
+    padding: 0.5rem 0.4rem;
+  }
+}
